@@ -41,15 +41,15 @@ def handle_comment(comment):
 
 log = get_logger()
 reddit = praw.Reddit('grootbot')
-attempts = 0
+sleepUntilNextTry = 0
 while True:
     try:
         for c in reddit.subreddit('all').stream.comments():
             handle_comment(c)
-            attempts = 0
+            sleepUntilNextTry = 0.0
     except Exception as e:
         log.critical('well shit: ' + str(e))
-        attempts += 1
-        log.critical('sleeping %ss', attempts/10)
-        sleep(attempts/10)
+        sleepUntilNextTry += .1
+        log.critical('sleeping %ss', sleepUntilNextTry)
+        sleep(sleepUntilNextTry)
         continue
