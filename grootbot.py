@@ -21,38 +21,33 @@ def get_logger():
     log.setLevel(level=logging.INFO)
     return log
 
-# def log_comment(msg, comment):
-#     log.info(msg + ': ' comment.id)
-
 def handle_comment(comment):
+    global reddit
     #don't comment on own comments
-    if comment.author == 'grootbot':
-        log.info('own comment found: %s', comment.id)
+    if comment.author == reddit.user.me():
+        # log.info('own comment found: %s', comment.id)
+        log_comment('own comment found', comment)
         return
 
-    if ' groot ' in comment.body.lower():
+    if ' groot' in comment.body.lower():
         log.info('" groot " found: %s', comment.id)
         comment.reply('I am Groot')
-    elif 'groot' in comment.body.lower():
-        log.info('"groot" (without spaces) found')
-    elif 'this' == comment.body.lower().strip() or 'this.' == comment.body.lower().strip():
-        log.info('useless comment found: "this": %s', comment.id)
-    elif 'listen here you little shit' == comment.body.lower().strip():
-        log.info('insert some navy seals copypasta here')
+    elif ' bad bot' in comment.body.lower():
+        log.info('sometimes we fail')
+        comment.reply('^I^am^~~groot~~sorry')
     else:
-        pass
         # print(comment.id)
+        pass
 
-if __name__ == '__main__':
-    log = get_logger()
-    reddit = praw.Reddit('grootbot')
-    attempts = 0
-    while True:
-        try:
-            for c in reddit.subreddit('all').stream.comments():
-                handle_comment(c)
-                attempts = 0
-        except Exception as e:
-            log.critical('well shit: ' + str(e))
-            sleep(attempts)
-            continue
+log = get_logger()
+reddit = praw.Reddit('grootbot')
+attempts = 0
+while True:
+    try:
+        for c in reddit.subreddit('all').stream.comments():
+            handle_comment(c)
+            attempts = 0
+    except Exception as e:
+        log.critical('well shit: ' + str(e))
+        sleep(attempts)
+        continue
