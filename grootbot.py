@@ -49,5 +49,7 @@ while True:
             attempts = 0
     except Exception as e:
         log.critical('well shit: ' + str(e))
-        sleep(attempts)
+        attempts += 1
+        log.critical('sleeping %ss', attempts/10)
+        sleep(attempts/10)
         continue
