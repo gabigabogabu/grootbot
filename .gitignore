@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+#praw login data
+praw.ini
