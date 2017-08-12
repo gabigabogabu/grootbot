@@ -23,10 +23,9 @@ def get_logger():
 
 def handle_comment(comment):
     global reddit
-    #don't comment on own comments
+    # don't comment on own comments
     if comment.author == reddit.user.me():
         log.info('own comment found: %s', comment.id)
-        # log_comment('own comment found', comment)
         return
 
     if ' groot' in comment.body.lower():
