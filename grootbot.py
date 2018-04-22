@@ -20,7 +20,7 @@ reactions = {
     " मैं हूँ groot": "我是格鲁特",
     "我是格鲁特": "Ich bin Groot",
     "groot sucks": "[I am Groot >:(](http://i.imgur.com/bM3DcDu.gif)",
-    "grootbot": "I am Groot 👋",
+    "grootbot": "[I am Groot 👋](https://data.whicdn.com/images/302342903/original.gif)",
     # "taserface": "[I am Groot 😂](http://i.imgur.com/f5yiWCl.gif)",
     # "what button": "[I am Groot?](http://i.imgur.com/5rBz2lG.gif)",
 }
